@@ -8,39 +8,34 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest  # Change to Windows environment
     steps:
-    # Checkout the code
-    - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    # Set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.10  # Ensure compatibility
-        architecture: x64
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10  # Use a Python version compatible with Windows
 
-    # Install dependencies using Makefile
-    - name: Install dependencies
-      run: make install
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          .\venv\Scripts\activate
+          pip install --upgrade pip
+          pip install flask flake8 black isort unittest
 
-    # Run tests
-    - name: Run tests
-      run: make test
+      - name: Run linter
+        run: |
+          .\venv\Scripts\activate
+          flake8 .
 
-    # Run linter
-    - name: Run linter
-      run: make lint
+      - name: Run tests
+        run: |
+          .\venv\Scripts\activate
+          python -m unittest discover -s . -p "test_*.py"
 
-    # Format code
-    - name: Format code
-      run: make format
-
-    # Clean up temporary files
-    - name: Clean up temporary files
-      run: make clean
-
-    # Run the application
-    - name: Run the application
-      run: make run
+      - name: Run application
+        run: |
+          .\venv\Scripts\activate
+          python app.py

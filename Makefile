@@ -2,7 +2,7 @@
 PYTHON := python
 PIP := pip
 VENV := venv
-BRANCH := main
+ACTIVATE := .\venv\Scripts\activate  # Adjusted for Windows
 
 # List of dependencies
 DEPENDENCIES := flask flake8 black isort unittest
@@ -26,54 +26,54 @@ help:
 # Install dependencies
 install:
 	@echo "Setting up virtual environment and installing dependencies..."
-	@if [ ! -d "$(VENV)" ]; then $(PYTHON) -m venv $(VENV); fi
-	. $(VENV)/bin/activate && $(PIP) install --upgrade pip
-	. $(VENV)/bin/activate && $(PIP) install $(DEPENDENCIES)
+	@if not exist "$(VENV)" ($(PYTHON) -m venv $(VENV))
+	$(ACTIVATE) && $(PIP) install --upgrade pip
+	$(ACTIVATE) && $(PIP) install $(DEPENDENCIES)
 
 # Run tests
 test:
 	@echo "Running tests..."
-	. $(VENV)/bin/activate && $(PYTHON) -m unittest discover -s . -p "test_*.py"
+	$(ACTIVATE) && $(PYTHON) -m unittest discover -s . -p "test_*.py"
 
 # Run linter
 lint:
 	@echo "Running linter..."
-	. $(VENV)/bin/activate && flake8 .
+	$(ACTIVATE) && flake8 .
 
 # Format code
 format:
 	@echo "Formatting code..."
-	. $(VENV)/bin/activate && black .
-	. $(VENV)/bin/activate && isort .
+	$(ACTIVATE) && black .
+	$(ACTIVATE) && isort .
 
 # Run the application
 run:
 	@echo "Running the application..."
-	. $(VENV)/bin/activate && $(PYTHON) app.py
+	$(ACTIVATE) && $(PYTHON) app.py
 
 # Clean temporary files
 clean:
 	@echo "Cleaning up temporary files..."
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
+	if exist "__pycache__" (rmdir /S /Q __pycache__)
+	del /S /Q *.pyc
 
 # Reset the environment
 reset:
 	@echo "Resetting environment..."
-	rm -rf $(VENV)
+	if exist $(VENV) (rmdir /S /Q $(VENV))
 	$(PYTHON) -m venv $(VENV)
-	. $(VENV)/bin/activate && $(PIP) install --upgrade pip
-	. $(VENV)/bin/activate && $(PIP) install $(DEPENDENCIES)
+	$(ACTIVATE) && $(PIP) install --upgrade pip
+	$(ACTIVATE) && $(PIP) install $(DEPENDENCIES)
 
 # Sync with GitHub
 sync:
 	@echo "Pulling latest changes from GitHub..."
 	git fetch origin
-	git pull origin $(BRANCH)
+	git pull origin main
 
 # Commit and push changes
 push:
 	@echo "Committing and pushing changes..."
 	git add .
 	git commit -m "Update: $(shell date '+%Y-%m-%d %H:%M:%S')"
-	git push origin $(BRANCH)
+	git push origin main

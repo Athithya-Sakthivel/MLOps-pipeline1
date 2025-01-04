@@ -65,3 +65,9 @@ reset:
 	rm -rf venv
 	$(PYTHON) -m venv venv
 	. venv/bin/activate && $(PIP) install -r $(REQUIREMENTS)
+clear-cache:
+	@echo "Clearing GitHub Actions caches..."
+	curl -X DELETE \
+	-H "Accept: application/vnd.github+json" \
+	-H "Authorization: Bearer $(GITHUB_TOKEN)" \
+	"https://api.github.com/repos/REPO_OWNER/REPO_NAME/actions/caches"

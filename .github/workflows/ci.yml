@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04  # Explicitly specify the version to avoid surprises
+    runs-on: ubuntu-22.04  # Explicit version to avoid Ubuntu 24.04 issues
 
     steps:
       - name: Checkout Code
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10  # Use a supported version like 3.10 or 3.11
+          python-version: 3.10  # Ensure correct version is specified
 
       - name: Install Dependencies
         run: |

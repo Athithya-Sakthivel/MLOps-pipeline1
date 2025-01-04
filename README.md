@@ -1,4 +1,31 @@
 MLOps Pipeline Overview
+
+1. Developer Pushes Code
+      ↓
+2. GitHub Repository
+      ↓
+3. GitHub Actions Workflow
+      ↓
+4. EC2 Instance
+      ↓
+5. Flask App Restarts with Updated Code
+      ↓
+6. Updated Website
+
+
+
+   ![Screenshot (63)](https://github.com/user-attachments/assets/2da50f76-fe2f-4abf-bdf8-373ef9cc59b4)
+   ![Screenshot (64)](https://github.com/user-attachments/assets/04a4963f-6617-43e9-be8d-bf27055f8432)
+   ![Screenshot (65)](https://github.com/user-attachments/assets/d4b1278f-71f7-4c35-88ff-7ac1e9de46f7)
+   ![Screenshot (66)](https://github.com/user-attachments/assets/9c86fee2-612e-4d8b-88ca-3c3997ed0a24)
+
+
+
+Detailed view
+
+
+
+
 1. Purpose
 This pipeline automates the deployment process for your Flask-based application hosted on an EC2 instance. It integrates Continuous Integration (CI) to test code changes and Continuous Deployment (CD) to automatically update the website whenever new code is pushed to the repository.
 
@@ -82,18 +109,8 @@ Flask app on EC2:
 Pulls the latest changes.
 Restarts, making the updates live.
 Diagram of the Pipeline
-Here's how you can structure a diagram for your documentation:
 
-css
-Copy code
-1. Developer Pushes Code
-      ↓
-2. GitHub Repository
-      ↓
-3. GitHub Actions Workflow
-      ↓
-4. EC2 Instance
-      ↓
-5. Flask App Restarts with Updated Code
-      ↓
-6. Updated Website
+
+
+
+

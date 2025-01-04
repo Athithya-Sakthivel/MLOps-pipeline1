@@ -1,8 +1,10 @@
 # Variables
 PYTHON := python
 PIP := pip
-REQUIREMENTS := requirements.txt
 BRANCH := main
+
+# List of dependencies
+DEPENDENCIES := flask flake8 unittest black isort
 
 # Default target
 .DEFAULT_GOAL := help
@@ -13,32 +15,41 @@ help:
 	@echo "  make install        Install dependencies"
 	@echo "  make test           Run tests"
 	@echo "  make lint           Run linter (flake8)"
+	@echo "  make format         Format code (black & isort)"
 	@echo "  make run            Run the application"
 	@echo "  make sync           Sync with the latest changes from GitHub"
 	@echo "  make push           Commit and push changes to the repository"
 	@echo "  make clean          Clean up temporary files"
+	@echo "  make reset          Reset the environment"
+	@echo "  make start          Install and run the application"
 
 # Install dependencies
 install:
 	@echo "Installing dependencies..."
-	$(PIP) install --upgrade pip
-	$(PIP) install -r $(REQUIREMENTS)
+	@if [ ! -d "venv" ]; then $(PYTHON) -m venv venv; fi
+	. venv/bin/activate && $(PIP) install --upgrade pip
+	. venv/bin/activate && $(PIP) install $(DEPENDENCIES)
 
 # Run tests
 test:
 	@echo "Running tests..."
-	$(PYTHON) -m unittest discover -s . -p "test_*.py"
+	. venv/bin/activate && $(PYTHON) -m unittest discover -s . -p "test_*.py"
 
 # Run linter
 lint:
 	@echo "Running linter..."
-	$(PIP) install flake8
-	flake8 app.py
+	. venv/bin/activate && flake8 app.py
+
+# Format code
+format:
+	@echo "Formatting code..."
+	. venv/bin/activate && black app.py
+	. venv/bin/activate && isort app.py
 
 # Run the application
 run:
 	@echo "Running the application..."
-	$(PYTHON) app.py
+	. venv/bin/activate && $(PYTHON) app.py
 
 # Sync with GitHub
 sync:
@@ -64,10 +75,10 @@ reset:
 	@echo "Resetting environment..."
 	rm -rf venv
 	$(PYTHON) -m venv venv
-	. venv/bin/activate && $(PIP) install -r $(REQUIREMENTS)
-clear-cache:
-	@echo "Clearing GitHub Actions caches..."
-	curl -X DELETE \
-	-H "Accept: application/vnd.github+json" \
-	-H "Authorization: Bearer $(GITHUB_TOKEN)" \
-	"https://api.github.com/repos/REPO_OWNER/REPO_NAME/actions/caches"
+	. venv/bin/activate && $(PIP) install $(DEPENDENCIES)
+
+# Install and start the application
+start:
+	@echo "Installing dependencies and starting the application..."
+	make install
+	make run

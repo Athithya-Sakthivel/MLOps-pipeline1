@@ -15,8 +15,18 @@ MLOps Pipeline Overview
 
 
    ![Screenshot (63)](https://github.com/user-attachments/assets/2da50f76-fe2f-4abf-bdf8-373ef9cc59b4)
+
+   
+   ![Screenshot (67)](https://github.com/user-attachments/assets/d1ae5601-d1f7-4801-a59a-e34940d3c684)
+
+
+
    ![Screenshot (64)](https://github.com/user-attachments/assets/04a4963f-6617-43e9-be8d-bf27055f8432)
+
+   
    ![Screenshot (65)](https://github.com/user-attachments/assets/d4b1278f-71f7-4c35-88ff-7ac1e9de46f7)
+
+   
    ![Screenshot (66)](https://github.com/user-attachments/assets/9c86fee2-612e-4d8b-88ca-3c3997ed0a24)
 
 
@@ -108,7 +118,6 @@ Deploys the updated code to the EC2 instance.
 Flask app on EC2:
 Pulls the latest changes.
 Restarts, making the updates live.
-Diagram of the Pipeline
 
 
 

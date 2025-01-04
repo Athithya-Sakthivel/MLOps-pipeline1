@@ -27,7 +27,7 @@ install:
 # Run tests
 test:
 	@echo "Running tests..."
-	$(PYTHON) -m unittest discover -s tests
+	$(PYTHON) -m unittest discover -s . -p "test_*.py"
 
 # Run linter
 lint:
@@ -56,13 +56,8 @@ push:
 # Clean temporary files
 clean:
 	@echo "Cleaning up temporary files..."
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -exec rm -f {} +
-
-# Rebuild Codespace (GitHub-specific)
-rebuild:
-	@echo "Rebuilding Codespace environment..."
-	codespace rebuild
+	find . -type d -name "__pycache__" -delete
+	find . -type f -name "*.pyc" -delete
 
 # Reset environment
 reset:

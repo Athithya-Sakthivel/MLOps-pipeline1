@@ -31,8 +31,5 @@ jobs:
           pip install flake8
           flake8 app.py
 
-      - name: Test App Start
-        run: |
-          python app.py &
-          sleep 5
-          curl -f http://localhost:8080
+      - name: Run Tests
+        run: python -m unittest discover -s .

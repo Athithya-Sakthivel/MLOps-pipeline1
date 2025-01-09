@@ -14,20 +14,30 @@ MLOps Pipeline Overview
 
 
 
-   ![Screenshot (63)](https://github.com/user-attachments/assets/2da50f76-fe2f-4abf-bdf8-373ef9cc59b4)
-
-   
-   ![Screenshot (67)](https://github.com/user-attachments/assets/d1ae5601-d1f7-4801-a59a-e34940d3c684)
+![63](https://github.com/user-attachments/assets/084e26b0-20a2-4dfb-b936-ef0cdc59377c)
 
 
 
-   ![Screenshot (64)](https://github.com/user-attachments/assets/04a4963f-6617-43e9-be8d-bf27055f8432)
 
-   
-   ![Screenshot (65)](https://github.com/user-attachments/assets/d4b1278f-71f7-4c35-88ff-7ac1e9de46f7)
 
-   
-   ![Screenshot (66)](https://github.com/user-attachments/assets/9c86fee2-612e-4d8b-88ca-3c3997ed0a24)
+![67](https://github.com/user-attachments/assets/428c1633-fbc7-4112-b4de-b3cc782ebba5)
+
+
+
+
+
+![68](https://github.com/user-attachments/assets/7d351f14-4912-464b-bfa7-ac7beca23c3e)
+
+
+
+
+
+![70](https://github.com/user-attachments/assets/901ab086-7a5a-45a6-b848-80032efcbcde)
+
+
+
+
+![71](https://github.com/user-attachments/assets/1da9d741-aa30-465a-9507-a5fc2123a1d3)
 
 
 
